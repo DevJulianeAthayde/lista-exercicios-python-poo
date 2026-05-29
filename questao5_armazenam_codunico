@@ -1,0 +1,121 @@
+# ============================================================
+# ARQUIVO: armazenador.py
+# Classe Abstrata Armazenador
+# ============================================================
+
+from abc import ABC, abstractmethod
+from typing import Protocol
+
+class Armazenador(ABC):
+
+    @abstractmethod
+    def salvar(self, dado):
+        pass
+
+
+# ============================================================
+# ARQUIVO: armazenador_arquivo.py
+# Classe ArmazenadorArquivo
+# ============================================================
+
+class ArmazenadorArquivo(Armazenador):
+
+    def salvar(self, dado):
+
+        print(
+            f"💾 Salvando '{dado}' em arquivo local."
+        )
+
+
+# ============================================================
+# ARQUIVO: armazenador_banco.py
+# Classe ArmazenadorBanco
+# ============================================================
+
+class ArmazenadorBanco(Armazenador):
+
+    def salvar(self, dado):
+
+        print(
+            f"🗄️ Salvando '{dado}' no banco de dados."
+        )
+
+
+# ============================================================
+# ARQUIVO: salvavel.py
+# Protocol Salvavel
+# ============================================================
+
+class Salvavel(Protocol):
+
+    def salvar(self, dado):
+        ...
+
+
+# ============================================================
+# ARQUIVO: armazenador_nuvem.py
+# Classe ArmazenadorNuvem
+# ============================================================
+
+class ArmazenadorNuvem:
+
+    def salvar(self, dado):
+
+        print(
+            f"☁️ Salvando '{dado}' na nuvem."
+        )
+
+
+# ============================================================
+# ARQUIVO: main.py
+# Funções e Programa Principal
+# ============================================================
+
+def executar_salvamento_formal(
+    armazenador: Armazenador,
+    dado
+):
+
+    armazenador.salvar(dado)
+
+
+def executar_salvamento_flexivel(
+    objeto: Salvavel,
+    dado
+):
+
+    objeto.salvar(dado)
+
+
+arquivo = ArmazenadorArquivo()
+banco = ArmazenadorBanco()
+nuvem = ArmazenadorNuvem()
+
+print("\n=== ABC ===")
+
+executar_salvamento_formal(
+    arquivo,
+    "Relatório.pdf"
+)
+
+executar_salvamento_formal(
+    banco,
+    "Usuários"
+)
+
+print("\n=== PROTOCOL ===")
+
+executar_salvamento_flexivel(
+    arquivo,
+    "Dados locais"
+)
+
+executar_salvamento_flexivel(
+    banco,
+    "Backup banco"
+)
+
+executar_salvamento_flexivel(
+    nuvem,
+    "Fotos"
+)
