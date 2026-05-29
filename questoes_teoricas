@@ -1,0 +1,41 @@
+PERGUNTAS TEÓRICAS
+
+1. Em qual parte há contrato por herança?
+
+O contrato por herança ocorre na implementação da classe abstrata Armazenador. As classes ArmazenadorArquivo e ArmazenadorBanco herdam de Armazenador e são obrigadas a implementar o método salvar(). Esse comportamento é garantido pela utilização de ABC (Abstract Base Class) e do decorador @abstractmethod.
+
+
+
+2. Em qual parte há contrato estrutural?
+
+O contrato estrutural ocorre na implementação do Protocol Salvavel. A classe ArmazenadorNuvem não herda de Armazenador nem de Salvavel, mas pode ser utilizada normalmente porque possui um método salvar() compatível com o protocolo. Nesse caso, o que importa é a estrutura da classe e não sua herança.
+
+
+
+3. Qual abordagem é mais rígida?
+
+A abordagem baseada em ABC é mais rígida, pois exige que as classes façam parte da mesma hierarquia de herança. Além disso, todas as subclasses devem implementar os métodos abstratos definidos pela classe base.
+
+
+
+4. Qual abordagem é mais flexível?
+
+A abordagem baseada em Protocol é mais flexível. Qualquer classe que implemente os métodos esperados pelo protocolo pode ser utilizada, mesmo sem herdar explicitamente dele ou participar da mesma hierarquia de classes.
+
+
+
+5. Em qual situação ABC faz mais sentido? E em qual Protocol faz mais sentido?
+
+ABC faz mais sentido quando existe uma hierarquia bem definida de objetos e quando se deseja impor regras obrigatórias para todas as subclasses. É útil para sistemas que precisam de maior controle e padronização.
+
+Protocol faz mais sentido quando diferentes classes precisam compartilhar apenas um comportamento comum, sem necessariamente possuir relação de herança. É ideal para sistemas mais flexíveis e desacoplados, seguindo o conceito de tipagem estrutural (duck typing).
+
+
+
+Conclusão:
+
+ABC = Contrato formal por herança.
+Protocol = Contrato estrutural por compatibilidade.
+
+ABC prioriza controle e padronização.
+Protocol prioriza flexibilidade e reutilização.
