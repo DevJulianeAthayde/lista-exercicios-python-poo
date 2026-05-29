@@ -1,0 +1,38 @@
+from abc import ABC, abstractmethod
+
+class Midia(ABC):
+    """
+    Classe abstrata que representa qualquer tipo de mídia da plataforma.
+
+    ABC (Abstract Base Class) garante que essa classe NÃO possa
+    ser instanciada diretamente.
+    """
+
+    def __init__(self, titulo: str, duracao: int):
+        """
+        Inicializa os atributos comuns para qualquer mídia.
+
+        :param titulo: Nome da mídia
+        :param duracao: Duração em minutos
+        """
+
+        self.titulo = titulo
+        self.duracao = duracao
+
+    def mostrar_info(self):
+        """
+        Método concreto responsável por exibir informações básicas.
+        """
+
+        print(f"Título: {self.titulo}")
+        print(f"Duração: {self.duracao} minutos")
+
+    @abstractmethod
+    def reproduzir(self):
+        """
+        Método abstrato.
+
+        Toda subclasse DEVE implementar esse método obrigatoriamente.
+        """
+
+        pass
