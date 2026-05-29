@@ -1,0 +1,99 @@
+# ============================================================
+# ARQUIVO: imprimivel.py
+# Protocolo Imprimivel
+# ============================================================
+
+from typing import Protocol
+
+class Imprimivel(Protocol):
+
+    def imprimir(self):
+        ...
+
+
+# ============================================================
+# ARQUIVO: boleto.py
+# Classe Boleto
+# ============================================================
+
+class Boleto:
+
+    def __init__(self, codigo, valor):
+        self.codigo = codigo
+        self.valor = valor
+
+    def imprimir(self):
+
+        print(
+            f"🧾 Boleto | Código: {self.codigo} "
+            f"| Valor: R$ {self.valor:.2f}"
+        )
+
+
+# ============================================================
+# ARQUIVO: etiqueta.py
+# Classe Etiqueta
+# ============================================================
+
+class Etiqueta:
+
+    def __init__(self, destinatario, endereco):
+        self.destinatario = destinatario
+        self.endereco = endereco
+
+    def imprimir(self):
+
+        print(
+            f"🏷️ Etiqueta para {self.destinatario}"
+        )
+
+        print(
+            f"Endereço: {self.endereco}"
+        )
+
+
+# ============================================================
+# ARQUIVO: relatorio_simples.py
+# Classe RelatorioSimples
+# ============================================================
+
+class RelatorioSimples:
+
+    def __init__(self, titulo):
+        self.titulo = titulo
+
+    def imprimir(self):
+
+        print(
+            f"📄 Relatório: {self.titulo}"
+        )
+
+
+# ============================================================
+# ARQUIVO: main.py
+# Função processar_impressao()
+# Programa Principal
+# ============================================================
+
+def processar_impressao(item: Imprimivel):
+
+    item.imprimir()
+
+
+boleto = Boleto(
+    "123456789",
+    250.50
+)
+
+etiqueta = Etiqueta(
+    "Juliane",
+    "Rua das Flores, 123"
+)
+
+relatorio = RelatorioSimples(
+    "Relatório Financeiro"
+)
+
+processar_impressao(boleto)
+processar_impressao(etiqueta)
+processar_impressao(relatorio)
